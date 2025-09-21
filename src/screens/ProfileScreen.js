@@ -1,92 +1,82 @@
 import React from 'react';
 import {
+  SafeAreaView,
   View,
   Text,
   StyleSheet,
-  ScrollView,
+  ImageBackground,
+  StatusBar,
+  Platform,
 } from 'react-native';
 
-const ProfileScreen = () => {
-  return (
-    <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>Profile</Text>
-      </View>
-      
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Personal Information</Text>
-        <View style={styles.infoItem}>
-          <Text style={styles.label}>Name:</Text>
-          <Text style={styles.value}>John Doe</Text>
-        </View>
-        <View style={styles.infoItem}>
-          <Text style={styles.label}>Email:</Text>
-          <Text style={styles.value}>john.doe@example.com</Text>
-        </View>
-      </View>
+export default function ProfileScreen() {
+  // Reference to background image in assets folder
+  const backgroundImage = require('../assets/background.png');
 
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Settings</Text>
-        <View style={styles.infoItem}>
-          <Text style={styles.label}>Notifications:</Text>
-          <Text style={styles.value}>Enabled</Text>
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="dark-content" translucent backgroundColor="transparent" />
+      <ImageBackground
+        source={backgroundImage}
+        resizeMode="cover"
+        style={styles.bg}
+        imageStyle={styles.bgImage}
+      >
+        <View style={styles.contentWrap}>
+          <Text style={styles.title}>Profile</Text>
+          <View style={styles.profileContainer}>
+            <Text style={styles.subtitle}>Welcome to your profile!</Text>
+          </View>
         </View>
-        <View style={styles.infoItem}>
-          <Text style={styles.label}>Theme:</Text>
-          <Text style={styles.value}>Light</Text>
-        </View>
-      </View>
-    </ScrollView>
+      </ImageBackground>
+    </SafeAreaView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#f4f7fb',
   },
-  header: {
-    padding: 20,
-    backgroundColor: 'white',
+  bg: {
+    flex: 1,
+    justifyContent: 'flex-start',
+  },
+  bgImage: {
+    opacity: 0.8,
+  },
+  contentWrap: {
+    alignItems: 'center',
+    marginTop: Platform.OS === 'android' ? StatusBar.currentHeight + 10 : 20,
+    paddingHorizontal: 24,
   },
   title: {
-    fontSize: 24,
-    fontWeight: 'bold',
+    fontSize: 32,
+    fontWeight: '700',
+    color: '#1b3b5a',
+    marginTop: 6,
   },
-  section: {
-    margin: 20,
-    padding: 15,
-    backgroundColor: 'white',
-    borderRadius: 10,
+  subtitle: {
+    fontSize: 18,
+    color: '#2b4a62',
+    marginTop: 6,
+    marginBottom: 22,
+  },
+  profileContainer: {
+    width: '100%',
+    backgroundColor: 'rgba(255,255,255,0.9)',
+    borderRadius: 15,
+    padding: 20,
+    marginTop: 20,
+    alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 2,
     },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 15,
-  },
-  infoItem: {
-    flexDirection: 'row',
-    paddingVertical: 8,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0',
-  },
-  label: {
-    flex: 1,
-    fontSize: 16,
-    color: '#666',
-  },
-  value: {
-    flex: 2,
-    fontSize: 16,
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
 });
-
-export default ProfileScreen;
