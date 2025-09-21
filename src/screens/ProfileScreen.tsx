@@ -7,11 +7,12 @@ import {
   ImageBackground,
   StatusBar,
   Platform,
+  ImageSourcePropType,
 } from 'react-native';
 
-export default function ProfileScreen() {
+const ProfileScreen: React.FC = () => {
   // Reference to background image in assets folder
-  const backgroundImage = require('../assets/background.png');
+  const backgroundImage: ImageSourcePropType = require('../assets/background.png');
 
 
   return (
@@ -80,3 +81,5 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
 });
+
+export default ProfileScreen;

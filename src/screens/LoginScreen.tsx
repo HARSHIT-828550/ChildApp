@@ -16,11 +16,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
-function LoginScreen({ navigation }) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [secure, setSecure] = useState(true);
-  const [remember, setRemember] = useState(false);
+function LoginScreen({ navigation }: { navigation: any }) {
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [secure, setSecure] = useState<boolean>(true);
+  const [remember, setRemember] = useState<boolean>(false);
 
   const handleLogin = () => {
     if (username === "admin" && password === "1234") {
@@ -196,5 +196,3 @@ const styles = StyleSheet.create({
 });
 
 export default LoginScreen;
-
-

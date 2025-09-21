@@ -15,11 +15,16 @@ import LinearGradient from "react-native-linear-gradient";
 
 const { width } = Dimensions.get("window");
 
-export default function DashboardScreen() {
-  const [activeTab, setActiveTab] = useState("home");
+interface MenuItem {
+  label: string;
+  icon: string;
+  color: string;
+}
 
-  // ✅ Correct MaterialCommunityIcons names
-  const menuItems = [
+export default function DashboardScreen() {
+  const [activeTab, setActiveTab] = useState<string>("home");
+
+  const menuItems: MenuItem[] = [
     { label: "Child Admission", icon: "baby", color: "#4caf50" },
     { label: "Child Transfer", icon: "account-switch", color: "#3f51b5" },
     { label: "Attendance / Nutrition", icon: "food-apple", color: "#ff9800" },
@@ -94,7 +99,14 @@ export default function DashboardScreen() {
   );
 }
 
-function NavItem({ label, icon, onPress, active }) {
+interface NavItemProps {
+  label: string;
+  icon: React.ReactNode;
+  onPress: () => void;
+  active: boolean;
+}
+
+function NavItem({ label, icon, onPress, active }: NavItemProps) {
   return (
     <TouchableOpacity onPress={onPress} style={styles.navItem} activeOpacity={0.8}>
       <View style={[styles.navIconWrap, active && styles.navActiveIconWrap]}>
